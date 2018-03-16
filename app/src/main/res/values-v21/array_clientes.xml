@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name="arrayClientes">
+            <item>Carlos Nieto</item>
+            <item>Adriana Soto</item>
+            <item>Juan Nieto</item>
+            <item>Santiago Nieto</item>
+            <item>Argemira Varela</item>
+        </string-array>
+</resources>
