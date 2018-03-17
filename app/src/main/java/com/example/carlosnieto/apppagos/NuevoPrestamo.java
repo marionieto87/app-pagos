@@ -58,9 +58,9 @@ public class NuevoPrestamo extends AppCompatActivity {
     }
 
     private void calcular() {
-        double porcent=10%;
-        int porcentaje=((prestamo_total*porcent)+prestamo_total);
-        tvresultado.setText("El Monto total a pagar es de: "+porcentaje);
+        //double porcent=10%;
+        //int porcentaje=((prestamo_total*porcent)+prestamo_total);
+        //tvresultado.setText("El Monto total a pagar es de: "+porcentaje);
     }
     private void guardar() {
     }

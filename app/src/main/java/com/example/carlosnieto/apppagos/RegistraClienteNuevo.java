@@ -57,7 +57,7 @@ public class RegistraClienteNuevo extends AppCompatActivity {
        String apellido     = et_apellido.getText().toString();
 
        SharedPreferences.Editor editor= preferences.edit();
-       editor.putString("user",nombre);
+       //editor.putString("user",nombre);
 
 
 
