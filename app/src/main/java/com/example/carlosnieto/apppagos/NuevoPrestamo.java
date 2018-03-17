@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class NuevoPrestamo extends AppCompatActivity {
 
+
+
     EditText     monto, fecha_prestamo;
     TextView     cliente_nuevo_prestamo, tvresultado;
     Button       btncalculo;
@@ -58,9 +60,10 @@ public class NuevoPrestamo extends AppCompatActivity {
     }
 
     private void calcular() {
-        //double porcent=10%;
-        //int porcentaje=((prestamo_total*porcent)+prestamo_total);
-        //tvresultado.setText("El Monto total a pagar es de: "+porcentaje);
+        int valor       = Integer.parseInt(monto.getText().toString());
+        double porcent  =0.10;
+        double porcentaje  =((valor*porcent)+valor);
+        tvresultado.setText("El Monto total a pagar es de: " + porcentaje);
     }
     private void guardar() {
     }
