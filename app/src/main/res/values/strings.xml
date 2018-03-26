@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppPagos</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu_app">MenuApp</string>
 
@@ -12,4 +12,6 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_consultar_creditos">ConsultarCreditos</string>
     <string name="title_activity_nuevo_prestamo">NuevoPrestamo</string>
+    <string name="title_activity_consultar_clientes">activity_consultar_clientes</string>
+    <string name="title_activity_menu_lateral">MenuLateralActivity</string>
 </resources>

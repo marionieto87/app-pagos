@@ -14,6 +14,8 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        ConexionSQliteHelper conn=new ConexionSQliteHelper(this,"bd_usuarios", null,1);
     }
 
     public void nuevo_cliente (View view)
@@ -24,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void ver_creditos (View view)
     {
-        Intent credit  = new Intent(MenuActivity.this,ConsultarCreditos.class);
+        Intent credit  = new Intent(MenuActivity.this,ConsultarClientesActivity.class);
         startActivity(credit);
     }
 
@@ -33,5 +35,12 @@ public class MenuActivity extends AppCompatActivity {
         Intent credit  = new Intent(MenuActivity.this,NuevoPrestamo.class);
         startActivity(credit);
     }
+
+    public void ver_ganancias(View view) {
+        Intent credit  = new Intent(MenuActivity.this,ConsultarCreditos.class);
+        startActivity(credit);
+    }
+
+    //Falta el de consultar creditos para poner en el menu
 }
 

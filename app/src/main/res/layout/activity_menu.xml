@@ -55,7 +55,8 @@
                 android:layout_height="80dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="@drawable/estadistica" />
+                android:background="@drawable/estadistica"
+                android:onClick="ver_ganancias"/>
 
             <Button
                 android:id="@+id/bt_busca_cliente"

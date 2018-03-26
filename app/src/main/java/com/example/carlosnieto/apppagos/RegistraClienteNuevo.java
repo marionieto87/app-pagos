@@ -1,8 +1,10 @@
 package com.example.carlosnieto.apppagos;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.carlosnieto.apppagos.utilidades.Utilidades;
 
 public class RegistraClienteNuevo extends AppCompatActivity {
 
@@ -33,32 +37,42 @@ public class RegistraClienteNuevo extends AppCompatActivity {
     }
 
     public void Guarda_Cliente_Nuevo(View view){
-
-        switch (view.getId()){
-            case R.id.bt_guarda_cliente:
-                guardarPreferencias();
-                break;
-        }
-        String nombre       = et_nombre.getText().toString();
-        String apellido     = et_apellido.getText().toString();
-        String celular      = et_celular.getText().toString();
-        String direccion    = et_direccion.getText().toString();
-
-        Toast.makeText(this, "Usuario Guardado", Toast.LENGTH_SHORT).show();
-        //tv_resultado1.setText("Usuario Guardado: " + nombre + apellido);
-
+        //registrarUsuarios();
+        registrarUsuariosSql();
     }
 
-    private void guardarPreferencias() {
+    private void registrarUsuariosSql() {
+        ConexionSQliteHelper conn=new ConexionSQliteHelper(this,"bd_usuarios", null,1);
+
+        SQLiteDatabase db=conn.getWritableDatabase();
+
+        //insert into usuario (id_cedula,nombre,apellido,direccion) values (42159168, Adriana, Soto, Los Molinos mz 31 cs 9)
+
+        String insert="INSERT INTO "+Utilidades.TABLA_USUARIO
+                +" ( "
+                +Utilidades.CAMPO_ID_CEDULA+","+Utilidades.CAMPO_NOMBRE+","+Utilidades.CAMPO_APELLIDO+","+Utilidades.CAMPO_DIRECCION+")" +
+                " VALUES ("+et_documento.getText().toString()+", '"+et_nombre.getText().toString()+"','"+et_apellido.getText().toString()+"','"+et_direccion.getText().toString()+"')";
+
+        db.execSQL(insert);
+
+        db.close();
     }
-       SharedPreferences preferences=getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
-       String nombre       = et_nombre.getText().toString();
-       String apellido     = et_apellido.getText().toString();
+    private void registrarUsuarios() {
+        ConexionSQliteHelper conn=new ConexionSQliteHelper(this,"bd_usuarios", null,1);
+        SQLiteDatabase db=conn.getWritableDatabase();
 
-       SharedPreferences.Editor editor= preferences.edit();
-       //editor.putString("user",nombre);
+        ContentValues values=new ContentValues();
+        values.put(Utilidades.CAMPO_ID_CEDULA,et_documento.getText().toString());
+        values.put(Utilidades.CAMPO_NOMBRE,et_nombre.getText().toString());
+        values.put(Utilidades.CAMPO_APELLIDO,et_apellido.getText().toString());
+        values.put(Utilidades.CAMPO_DIRECCION,et_direccion.getText().toString());
 
+        Long idResultante=db.insert(Utilidades.TABLA_USUARIO,Utilidades.CAMPO_ID_CEDULA,values);
 
+        Toast.makeText(getApplicationContext(),"Id Registro: "+idResultante,Toast.LENGTH_SHORT).show();
+        db.close();
+
+    }
 
 }

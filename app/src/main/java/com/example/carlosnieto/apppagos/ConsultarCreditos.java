@@ -1,49 +1,58 @@
 package com.example.carlosnieto.apppagos;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import com.example.carlosnieto.apppagos.Adaptadores.AdapterDatos;
+import com.example.carlosnieto.apppagos.entidades.Usuario;
+import com.example.carlosnieto.apppagos.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
 public class ConsultarCreditos extends AppCompatActivity {
 
-    ArrayList<ClientesDeudaVo> listaDatos;
-    RecyclerView recycler;
+    ArrayList<Usuario> listaDatos;
+    RecyclerView recyclerViewClientesDeuda;
+
+    ConexionSQliteHelper conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_creditos);
 
-        listaDatos=new ArrayList<ClientesDeudaVo>();
+        conn=new ConexionSQliteHelper(getApplicationContext(),"bd_usuarios",null,1);
 
-        recycler= (RecyclerView) findViewById(R.id.recyclerClientesDeuda);
-        //recycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recycler.setLayoutManager(new GridLayoutManager(this,1));
+        listaDatos=new ArrayList<>();
+
+        recyclerViewClientesDeuda= (RecyclerView) findViewById(R.id.recyclerClientesDeuda);
+        recyclerViewClientesDeuda.setLayoutManager(new LinearLayoutManager(this));
 
         llenarClienteDeuda();
 
         AdapterDatos adapter=new AdapterDatos(listaDatos);
-        recycler.setAdapter(adapter);
+        recyclerViewClientesDeuda.setAdapter(adapter);
 
 }
 
     private void llenarClienteDeuda() {
-        listaDatos.add(new ClientesDeudaVo("Nieto Juan","$550.000"));
-        listaDatos.add(new ClientesDeudaVo("Nieto Santiago","$250.000"));
-        listaDatos.add(new ClientesDeudaVo("Garcia Andres","$150.000"));
-        listaDatos.add(new ClientesDeudaVo("Gomez Pepe","$400.000"));
-        listaDatos.add(new ClientesDeudaVo("Carrillo Diego","$200.000"));
+        SQLiteDatabase db= conn.getReadableDatabase();
+
+        Usuario usuario=null;
+
+        Cursor cursor=db.rawQuery("SELECT * FROM"+ Utilidades.TABLA_USUARIO,null);
+
+        while (cursor.moveToNext()){
+            usuario=new Usuario();
+            usuario.setId_cedula(cursor.getInt(0));
+            usuario.setNombre(cursor.getString(1));
+            usuario.setApellido(cursor.getString(2));
+            usuario.setDireccion(cursor.getString(3));
+
+            listaDatos.add(usuario);
+        }
     }
 }
