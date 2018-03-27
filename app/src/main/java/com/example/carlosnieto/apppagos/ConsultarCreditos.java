@@ -43,7 +43,7 @@ public class ConsultarCreditos extends AppCompatActivity {
 
         Usuario usuario=null;
 
-        Cursor cursor=db.rawQuery("SELECT * FROM"+ Utilidades.TABLA_USUARIO,null);
+        Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
 
         while (cursor.moveToNext()){
             usuario=new Usuario();
