@@ -122,13 +122,13 @@
                     android:ems="10"
                     android:inputType="number|phone" />
 
-                <EditText
-                    android:id="@+id/et_fecha_prestamo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="DD/MM/AAAA"
-                    android:inputType="date" />
+
+                <ImageView
+                    android:id="@+id/img_fecha_prestamo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/calendar"
+                    android:onClick="onClick"/>
 
                 <EditText
                     android:id="@+id/et_fecha_recolectar"

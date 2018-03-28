@@ -42,7 +42,7 @@ public class NuevoPrestamo extends AppCompatActivity implements View.OnClickList
         campoCedula             = (EditText) findViewById(R.id.txt_cedula_cliente);
         campoNombre             = (EditText) findViewById(R.id.etNombreCLiente);
         campoMonto              = (EditText) findViewById(R.id.et_monto_prestamo);
-        campoFechaPrestamo      = (EditText) findViewById(R.id.et_fecha_prestamo);
+        //campoFechaPrestamo      = (EditText) findViewById(R.id.et_fecha_prestamo);
         campoFechaRecoleccion   = (EditText) findViewById(R.id.et_fecha_recolectar);
         tvresultado             = (TextView) findViewById(R.id.tv_resultado);
 
