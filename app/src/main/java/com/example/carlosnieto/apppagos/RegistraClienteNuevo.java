@@ -53,9 +53,12 @@ public class RegistraClienteNuevo extends AppCompatActivity {
                 +Utilidades.CAMPO_ID_CEDULA+","+Utilidades.CAMPO_NOMBRE+","+Utilidades.CAMPO_APELLIDO+","+Utilidades.CAMPO_DIRECCION+")" +
                 " VALUES ("+et_documento.getText().toString()+", '"+et_nombre.getText().toString()+"','"+et_apellido.getText().toString()+"','"+et_direccion.getText().toString()+"')";
 
+
         db.execSQL(insert);
 
         db.close();
+        Toast toast = Toast.makeText(this, "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private void registrarUsuarios() {
