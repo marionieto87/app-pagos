@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E7E7DE"
+    android:background="@color/colorPrimaryApp"
     android:orientation="vertical"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context="com.example.carlosnieto.apppagos.MenuActivity">
+    android:paddingTop="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 android:gravity="center_horizontal"
                 android:paddingBottom="10dp"
                 android:text="Menu"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -56,7 +55,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/estadistica"
-                android:onClick="ver_ganancias"/>
+                android:onClick="ver_ganancias" />
 
             <Button
                 android:id="@+id/bt_busca_cliente"
@@ -93,10 +92,9 @@
                 android:id="@+id/bt_settings"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/settings"/>
+                android:background="@drawable/settings" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
