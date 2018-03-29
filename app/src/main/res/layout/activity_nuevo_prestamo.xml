@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:text="Nombre: "
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp" />
@@ -80,26 +80,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="22dp"
                     android:text="Monto"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Fecha prestamo"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Fecha recoleccion"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp" />
 
              </LinearLayout>
 
@@ -122,26 +107,87 @@
                     android:ems="10"
                     android:inputType="number|phone" />
 
+            </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/img_fecha_prestamo"
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha Prestamo"
+                    android:layout_marginTop="-10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/btn_Fecha_Prestamo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/calendar"
+                    android:background="@drawable/calendar"
+                    android:onClick="onClick"/>
+
+                <EditText
+                    android:id="@+id/et_fecha_prestamo"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="DD/MM/AAAA"
+                    android:inputType="date" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha Recoleccion"
+                    android:layout_marginTop="-10dp"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_Fecha_recolectar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/calendar"
                     android:onClick="onClick"/>
 
                 <EditText
                     android:id="@+id/et_fecha_recolectar"
-                    android:layout_width="match_parent"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="DD/MM/AAAA"
                     android:inputType="date" />
 
-
             </LinearLayout>
 
-    </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

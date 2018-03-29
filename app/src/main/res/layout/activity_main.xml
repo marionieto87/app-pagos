@@ -111,14 +111,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textCapCharacters" />
 
                     <EditText
                         android:id="@+id/txt_apellido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textCapCharacters" />
 
                     <EditText
                         android:id="@+id/txt_documento_cliente"
@@ -139,7 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textCapCharacters" />
 
 
                 </LinearLayout>
