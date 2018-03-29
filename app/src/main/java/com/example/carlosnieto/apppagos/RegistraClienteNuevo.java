@@ -59,6 +59,12 @@ public class RegistraClienteNuevo extends AppCompatActivity {
         db.close();
         Toast toast = Toast.makeText(this, "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
         toast.show();
+        et_nombre.setText("");
+        et_apellido.setText("");
+        et_documento.setText("");
+        et_celular.setText("");
+        et_direccion.setText("");
+
     }
 
     private void registrarUsuarios() {

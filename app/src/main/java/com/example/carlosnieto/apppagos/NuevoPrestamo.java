@@ -26,7 +26,7 @@ public class NuevoPrestamo extends AppCompatActivity implements View.OnClickList
 
     EditText     campoCedula, campoMonto, campoFechaPrestamo, campoNombre, campoFechaRecoleccion;
     TextView     cliente_nuevo_prestamo, tvresultado;
-    Button       btncalculo;
+    Button       btncalculo, btnFechaPrestamo, btnFechaRecoleccion;
     int          prestamo_total;
     double       porcent;
     private int  dia, mes, ano;
@@ -42,16 +42,19 @@ public class NuevoPrestamo extends AppCompatActivity implements View.OnClickList
         campoCedula             = (EditText) findViewById(R.id.txt_cedula_cliente);
         campoNombre             = (EditText) findViewById(R.id.etNombreCLiente);
         campoMonto              = (EditText) findViewById(R.id.et_monto_prestamo);
-        //campoFechaPrestamo      = (EditText) findViewById(R.id.et_fecha_prestamo);
+        campoFechaPrestamo      = (EditText) findViewById(R.id.et_fecha_prestamo);
         campoFechaRecoleccion   = (EditText) findViewById(R.id.et_fecha_recolectar);
         tvresultado             = (TextView) findViewById(R.id.tv_resultado);
+        btnFechaPrestamo        = (Button) findViewById(R.id.btn_Fecha_Prestamo);
+        btnFechaRecoleccion     = (Button) findViewById(R.id.btn_Fecha_recolectar);
+
 
         campoFechaPrestamo.setOnClickListener(this);
         campoFechaRecoleccion.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
-        if(v==campoFechaPrestamo){
+        if(v==btnFechaPrestamo){
             final Calendar c= Calendar.getInstance();
             dia  = c.get(Calendar.DAY_OF_MONTH);
             mes  = c.get(Calendar.MONTH);
@@ -67,7 +70,7 @@ public class NuevoPrestamo extends AppCompatActivity implements View.OnClickList
             date.show();
 
         }
-        if(v==campoFechaRecoleccion){
+        if(v==btnFechaRecoleccion){
             final Calendar c= Calendar.getInstance();
             dia  = c.get(Calendar.DAY_OF_MONTH);
             mes  = c.get(Calendar.MONTH);
