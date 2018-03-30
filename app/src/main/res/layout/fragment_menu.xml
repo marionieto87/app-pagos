@@ -3,12 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryApp"
+    android:orientation="vertical"
     tools:context=".Fragments.FragmentMenu">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnNuevoCliente"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/adduser"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/btnEstadisticas"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/estadistica"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/btnListaClientes"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/buscacliente"
+                android:onClick="onClick" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPrestamo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/otprestamo"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/btnPorVencer"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/porvencer"
+                android:onClick="onClick"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/settings"
+                android:onClick="onClick"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
