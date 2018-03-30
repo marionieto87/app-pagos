@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.carlosnieto.apppagos.Fragments.FragmentRegistraClienteNuevo;
+
 public class MenuActivity extends AppCompatActivity {
 
     Button bt_guarda_cliente;
@@ -20,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void nuevo_cliente (View view)
     {
-        Intent obj  = new Intent(MenuActivity.this,RegistraClienteNuevo.class);
+        Intent obj  = new Intent(MenuActivity.this,FragmentRegistraClienteNuevo.class);
         startActivity(obj);
     }
 

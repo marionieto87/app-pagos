@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Appgos.iml" filepath="$PROJECT_DIR$/Appgos.iml" />
-      <module fileurl="file://C:\Users\sebas\Desktop\Programas_Android_Studio\AndroidStudioProjects\app-pagos\Appgos.iml" filepath="C:\Users\sebas\Desktop\Programas_Android_Studio\AndroidStudioProjects\app-pagos\Appgos.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\sebas\Desktop\Programas_Android_Studio\AndroidStudioProjects\app-pagos\app\app.iml" filepath="C:\Users\sebas\Desktop\Programas_Android_Studio\AndroidStudioProjects\app-pagos\app\app.iml" />
-      <module fileurl="file://C:\Users\Mario\AndroidStudioProjects\Appgos\app-pagos.iml" filepath="C:\Users\Mario\AndroidStudioProjects\Appgos\app-pagos.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.example.carlosnieto.apppagos;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +15,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.carlosnieto.apppagos.utilidades.Utilidades;
+
+import org.json.JSONObject;
 
 public class RegistraClienteNuevo extends AppCompatActivity {
 
     public EditText et_nombre, et_apellido, et_celular, et_direccion, et_documento;
-    public TextView tv_resultado1;
     public Button bt_nuevo_cliente;
+    public ProgressDialog progreso;
+
+    public RequestQueue request;
+    public JsonObjectRequest jsonObjectRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +41,7 @@ public class RegistraClienteNuevo extends AppCompatActivity {
         et_apellido     = (EditText)findViewById(R.id.txt_apellido);
         et_celular      = (EditText)findViewById(R.id.txt_telefono);
         et_direccion    = (EditText)findViewById(R.id.txt_direccion);
-        et_documento    = (EditText)findViewById(R.id.txt_documento_cliente);
-        tv_resultado1   = (TextView)findViewById(R.id.tv_resultado_guardar);
+        et_documento    = (EditText)findViewById(R.id.txt_documentocliente);
         bt_nuevo_cliente= (Button)findViewById(R.id.bt_guarda_cliente);
     }
 
@@ -83,5 +92,6 @@ public class RegistraClienteNuevo extends AppCompatActivity {
         db.close();
 
     }
+
 
 }
