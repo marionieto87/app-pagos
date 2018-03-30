@@ -1,4 +1,4 @@
-package com.example.carlosnieto.apppagos.Fragments;
+package com.example.carlosnieto.apppagos;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,17 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.carlosnieto.apppagos.R;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentRegistraClienteNuevo.OnFragmentInteractionListener} interface
+ * {@link FragmentMenu.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentRegistraClienteNuevo#newInstance} factory method to
+ * Use the {@link FragmentMenu#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRegistraClienteNuevo extends Fragment {
+public class FragmentMenu extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +28,7 @@ public class FragmentRegistraClienteNuevo extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentRegistraClienteNuevo() {
+    public FragmentMenu() {
         // Required empty public constructor
     }
 
@@ -40,11 +38,11 @@ public class FragmentRegistraClienteNuevo extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentRegistraClienteNuevo.
+     * @return A new instance of fragment FragmentMenu.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentRegistraClienteNuevo newInstance(String param1, String param2) {
-        FragmentRegistraClienteNuevo fragment = new FragmentRegistraClienteNuevo();
+    public static FragmentMenu newInstance(String param1, String param2) {
+        FragmentMenu fragment = new FragmentMenu();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +63,7 @@ public class FragmentRegistraClienteNuevo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registra_cliente_nuevo, container, false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

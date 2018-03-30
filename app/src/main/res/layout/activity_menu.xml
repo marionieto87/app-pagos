@@ -12,10 +12,10 @@
 
       <fragment
           android:id="@+id/contenedorFragment"
+          android:name="com.example.carlosnieto.apppagos.FragmentMenu"
           android:layout_width="match_parent"
-          android:layout_height="match_parent">
-
-      </fragment>
+          android:layout_height="match_parent"
+          tools:layout="@layout/fragment_menu"/>
 
 
 </LinearLayout>

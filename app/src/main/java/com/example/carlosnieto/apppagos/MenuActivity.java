@@ -1,17 +1,9 @@
 package com.example.carlosnieto.apppagos;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-
-import com.example.carlosnieto.apppagos.Fragments.FragmentListaClientes;
-import com.example.carlosnieto.apppagos.Fragments.FragmentMenu;
-import com.example.carlosnieto.apppagos.Fragments.FragmentRegistraClienteNuevo;
 
 public class MenuActivity extends AppCompatActivity implements FragmentMenu.OnFragmentInteractionListener,
         FragmentRegistraClienteNuevo.OnFragmentInteractionListener,
@@ -42,10 +34,12 @@ public class MenuActivity extends AppCompatActivity implements FragmentMenu.OnFr
 
             switch (view.getId()){
                 case R.id.btnNuevoCliente:
+                    transaction.replace(R.id.contenedorFragment,fragmentRegistraClienteNuevo);
                     break;
                 case R.id.btnEstadisticas:
                     break;
                 case R.id.btnListaClientes:
+                    transaction.replace(R.id.contenedorFragment,fragmentListaClientes);
                     break;
                 case R.id.btnPrestamo:
             }

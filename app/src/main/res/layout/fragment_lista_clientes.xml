@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryApp"
     android:orientation="vertical"
-    tools:context=".Fragments.FragmentListaClientes">
+    tools:context=".FragmentListaClientes">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

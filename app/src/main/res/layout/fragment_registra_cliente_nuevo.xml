@@ -4,11 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryApp"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context="com.example.carlosnieto.apppagos.Fragments.FragmentRegistraClienteNuevo">
+    tools:context="com.example.carlosnieto.apppagos.FragmentRegistraClienteNuevo">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -205,8 +201,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:onClick="Guarda_Cliente_Nuevo"
-                    android:text="Guardar" />
+                    android:text="Guardar"
+                    android:onClick="onClick"/>
             </LinearLayout>
 
         </LinearLayout>
