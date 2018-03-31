@@ -1,12 +1,32 @@
 package com.example.carlosnieto.apppagos;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.carlosnieto.apppagos.Adaptadores.AdapterDatos;
+import com.example.carlosnieto.apppagos.entidades.Usuario;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +36,7 @@ import android.view.ViewGroup;
  * Use the {@link FragmentListaClientes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentListaClientes extends Fragment {
+public class FragmentListaClientes extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +47,14 @@ public class FragmentListaClientes extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    RecyclerView recyclerUsuarios;
+    ArrayList<Usuario> listaUsuarios;
+
+    ProgressDialog progress;
+
+    RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
 
     public FragmentListaClientes() {
         // Required empty public constructor
@@ -63,7 +91,67 @@ public class FragmentListaClientes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_clientes, container, false);
+        View vista=inflater.inflate(R.layout.fragment_lista_clientes,container,false);
+
+        listaUsuarios=new ArrayList<>();
+
+        recyclerUsuarios= (RecyclerView) vista.findViewById(R.id.recyclerClientesDeuda);
+        recyclerUsuarios.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerUsuarios.setHasFixedSize(true);
+
+        request= Volley.newRequestQueue(getContext());
+
+        cargarWebService();
+
+        return vista;
+    }
+
+    private void cargarWebService() {
+        progress=new ProgressDialog(getContext());
+        progress.setMessage("Consultando...");
+        progress.show();
+
+        String url="http://192.168.1.16/conexion-app-pagos/wsJSONConsultarLista.php";
+
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        progress.hide();
+        Toast.makeText(getContext(),"No se pudo realizar la consulta"+error.toString(), Toast.LENGTH_SHORT).show();
+        System.out.println();
+        Log.i("ERROR",error.toString());
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Usuario usuario=null;
+
+        JSONArray json=response.optJSONArray("clientes");
+
+        try {
+            for (int i=0;i<json.length();i++){
+                usuario= new Usuario();
+                JSONObject jsonObject=null;
+                jsonObject=json.getJSONObject(i);
+
+                usuario.setId_cedula(jsonObject.optInt("id_documento"));
+                usuario.setNombre(jsonObject.optString("nombres"));
+                usuario.setApellido(jsonObject.optString("apellidos"));
+                usuario.setDireccion(jsonObject.optString("dir_cliente"));
+                listaUsuarios.add(usuario);
+            }
+            progress.hide();
+            AdapterDatos adapter=new AdapterDatos(listaUsuarios);
+            recyclerUsuarios.setAdapter(adapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            progress.hide();
+            Toast.makeText(getContext(),"No se pudo realizar la consulta"+response, Toast.LENGTH_SHORT).show();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +177,7 @@ public class FragmentListaClientes extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

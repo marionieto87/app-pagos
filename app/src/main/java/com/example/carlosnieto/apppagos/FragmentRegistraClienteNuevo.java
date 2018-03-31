@@ -115,7 +115,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
                 "&apellidos="+campoApellido.getText().toString()+
                 "&dir_cliente="+campoDireccion.getText().toString();
 
-        url=url.replace(" ","%20%");
+        url=url.replace(" ","%20");
 
         jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         request.add(jsonObjectRequest);
@@ -125,7 +125,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
     public void onResponse(JSONObject response) {
         Toast.makeText(getContext(),"Se ha registrado exitosamente",Toast.LENGTH_SHORT).show();
         progreso.hide();
-        //campoCedula.setText("");
+        campoCedula.setText("");
         campoNombre.setText("");
         campoApellido.setText("");
         campoDireccion.setText("");
