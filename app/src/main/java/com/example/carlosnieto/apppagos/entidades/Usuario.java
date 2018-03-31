@@ -14,12 +14,12 @@ public class Usuario {
     private Integer id_tipousuario;
     private Integer id_tipotelefono;
 
-    public Usuario() {
+   /* public Usuario() {
         this.id_cedula  = id_cedula;
         this.nombre     = nombre;
         this.apellido   = apellido;
         this.direccion  = direccion;
-    }
+    }*/
 
     public Integer getId_cedula() {
         return id_cedula;

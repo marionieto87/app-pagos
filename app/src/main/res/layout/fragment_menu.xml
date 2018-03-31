@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryApp"
     android:orientation="vertical"
     tools:context=".FragmentMenu">
 
@@ -38,7 +37,7 @@
                 android:onClick="onClick" />
 
             <Button
-                android:id="@+id/btnListaClientes"
+                android:id="@+id/btnBuscaCliente"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/buscacliente"
@@ -67,6 +66,38 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/porvencer"
+                android:onClick="onClick"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/cashregister"
+                android:onClick="onClick"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnListaClientes"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/lista_clientes"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/btnRecolectarDinero"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/walletmoney"
                 android:onClick="onClick"/>
 
             <Button

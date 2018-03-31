@@ -1,12 +1,30 @@
 package com.example.carlosnieto.apppagos;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.carlosnieto.apppagos.entidades.Usuario;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -17,7 +35,7 @@ import android.view.ViewGroup;
  * Use the {@link FragmentBuscaCliente#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentBuscaCliente extends Fragment {
+public class FragmentBuscaCliente extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +46,16 @@ public class FragmentBuscaCliente extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    EditText campoDocumento;
+    TextView searchNombre,searchApellido,searchDireccion;
+    Button btnBuscaCliente;
+    ProgressDialog progreso;
+
+    RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
+
+
 
     public FragmentBuscaCliente() {
         // Required empty public constructor
@@ -64,7 +92,68 @@ public class FragmentBuscaCliente extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_busca_cliente, container, false);
+        View vista=inflater.inflate(R.layout.fragment_busca_cliente, container, false);
+        campoDocumento= (EditText) vista.findViewById(R.id.search_cedula);
+        searchNombre= (TextView) vista.findViewById(R.id.search_nombre);
+        searchApellido=(TextView) vista.findViewById(R.id.search_apellido);
+        searchDireccion= (TextView) vista.findViewById(R.id.search_direccion);
+        btnBuscaCliente= (Button) vista.findViewById(R.id.btn_BuscaCliente);
+
+        request= Volley.newRequestQueue(getContext());
+
+        btnBuscaCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cargarWebService();
+            }
+        });
+
+        return vista;
+    }
+
+    private void cargarWebService() {
+
+        progreso=new ProgressDialog(getContext());
+        progreso.setMessage("Consultando...");
+        progreso.show();
+
+        String url="http://192.168.1.16/conexion-app-pagos/wsJSONConsultarUsuario.php?id_documento="
+                +campoDocumento.getText().toString();
+
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        progreso.hide();
+        Toast.makeText(getContext(),"No se puede consultar"+error.toString(), Toast.LENGTH_SHORT).show();
+        Log.i("ERROR",error.toString());
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        progreso.hide();
+
+        Toast.makeText(getContext(), "Consulta exitosa!!", Toast.LENGTH_SHORT).show();
+
+        Usuario miUsuario = new Usuario();
+
+        JSONArray json=response.optJSONArray("clientes");
+        JSONObject jsonObject=null;
+
+        try {
+            jsonObject=json.getJSONObject(0);
+            miUsuario.setNombre(jsonObject.optString("nombres"));
+            miUsuario.setApellido(jsonObject.optString("apellidos"));
+            miUsuario.setDireccion(jsonObject.optString("dir_cliente"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        searchNombre.setText("Nombre: "+miUsuario.getNombre());
+        searchApellido.setText("Apellidos: "+miUsuario.getApellido());
+        searchDireccion.setText("Direccion: "+miUsuario.getDireccion());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +179,8 @@ public class FragmentBuscaCliente extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

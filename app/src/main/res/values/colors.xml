@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00587a</color>
+    <color name="colorPrimary">#970747</color><!-- Color menu superior FC5185  5DA0A2  -->
     <color name="colorPrimaryDark">#00587a</color>
-    <color name="colorAccent">#0f3057</color>
-    <color name="colorPrimaryApp">#e7e7de</color>
+    <color name="colorAccent">#13445A</color>
+    <color name="colorPrimaryApp">#ECF0F1</color><!-- Color fondo APP  -->
 </resources>

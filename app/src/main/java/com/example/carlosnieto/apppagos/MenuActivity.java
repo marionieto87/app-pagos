@@ -7,11 +7,15 @@ import android.view.View;
 
 public class MenuActivity extends AppCompatActivity implements FragmentMenu.OnFragmentInteractionListener,
         FragmentRegistraClienteNuevo.OnFragmentInteractionListener,
-        FragmentListaClientes.OnFragmentInteractionListener {
+        FragmentListaClientes.OnFragmentInteractionListener,
+        FragmentNuevoPrestamo.OnFragmentInteractionListener,
+        FragmentBuscaCliente.OnFragmentInteractionListener {
 
     FragmentMenu fragmentMenu;
     FragmentRegistraClienteNuevo fragmentRegistraClienteNuevo;
     FragmentListaClientes fragmentListaClientes;
+    FragmentNuevoPrestamo fragmentNuevoPrestamo;
+    FragmentBuscaCliente fragmentBuscaCliente;
 
 
     @Override
@@ -22,6 +26,8 @@ public class MenuActivity extends AppCompatActivity implements FragmentMenu.OnFr
         fragmentMenu=new FragmentMenu();
         fragmentRegistraClienteNuevo=new FragmentRegistraClienteNuevo();
         fragmentListaClientes=new FragmentListaClientes();
+        fragmentNuevoPrestamo=new FragmentNuevoPrestamo();
+        fragmentBuscaCliente=new FragmentBuscaCliente();
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragment,fragmentMenu).commit();
 
@@ -34,14 +40,19 @@ public class MenuActivity extends AppCompatActivity implements FragmentMenu.OnFr
 
             switch (view.getId()){
                 case R.id.btnNuevoCliente:
-                    transaction.replace(R.id.contenedorFragment,fragmentRegistraClienteNuevo);
+                    transaction.replace(R.id.contenedorFragment,fragmentRegistraClienteNuevo).addToBackStack(null);
                     break;
                 case R.id.btnEstadisticas:
                     break;
-                case R.id.btnListaClientes:
-                    transaction.replace(R.id.contenedorFragment,fragmentListaClientes);
+                case R.id.btnBuscaCliente:
+                    transaction.replace(R.id.contenedorFragment,fragmentBuscaCliente).addToBackStack(null);
                     break;
                 case R.id.btnPrestamo:
+                    transaction.replace(R.id.contenedorFragment,fragmentNuevoPrestamo).addToBackStack(null);
+                    break;
+                case R.id.btnListaClientes:
+                    transaction.replace(R.id.contenedorFragment,fragmentListaClientes).addToBackStack(null);
+                    break;
             }
         transaction.commit();
     }

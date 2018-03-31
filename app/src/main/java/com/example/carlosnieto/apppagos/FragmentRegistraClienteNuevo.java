@@ -113,7 +113,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
         String url="http://192.168.1.16/conexion-app-pagos/wsJSONRegistro.php?id_documento="+campoCedula.getText().toString()+
                 "&nombres="+campoNombre.getText().toString()+
                 "&apellidos="+campoApellido.getText().toString()+
-                "&dir_cliente=MUNICH"+campoDireccion.getText().toString();
+                "&dir_cliente="+campoDireccion.getText().toString();
 
         url=url.replace(" ","%20%");
 
