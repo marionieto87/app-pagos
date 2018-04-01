@@ -43,7 +43,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
 
     private OnFragmentInteractionListener mListener;
 
-    EditText campoCedula,campoNombre,campoApellido,campoDireccion;
+    EditText campoCedula,campoNombre,campoApellido,campoDireccion, campoTelefono;
     Button btn_GuardaCliente;
     ProgressDialog progreso;
 
@@ -90,6 +90,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
         campoNombre= (EditText) vista.findViewById(R.id.txt_nombre);
         campoApellido=(EditText) vista.findViewById(R.id.txt_apellido);
         campoDireccion= (EditText) vista.findViewById(R.id.txt_direccion);
+        campoTelefono= (EditText) vista.findViewById(R.id.txt_telefono);
         btn_GuardaCliente= (Button) vista.findViewById(R.id.bt_guarda_cliente);
 
         request= Volley.newRequestQueue(getContext());
@@ -113,7 +114,8 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
         String url="http://192.168.1.16/conexion-app-pagos/wsJSONRegistro.php?id_documento="+campoCedula.getText().toString()+
                 "&nombres="+campoNombre.getText().toString()+
                 "&apellidos="+campoApellido.getText().toString()+
-                "&dir_cliente="+campoDireccion.getText().toString();
+                "&dir_cliente="+campoDireccion.getText().toString()+
+                "&nro_telefono="+campoTelefono.getText().toString();
 
         url=url.replace(" ","%20");
 
@@ -128,6 +130,7 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
         campoCedula.setText("");
         campoNombre.setText("");
         campoApellido.setText("");
+        campoTelefono.setText("");
         campoDireccion.setText("");
     }
 

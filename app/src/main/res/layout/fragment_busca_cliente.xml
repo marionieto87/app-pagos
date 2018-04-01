@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryApp"
     android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
     tools:context=".FragmentBuscaCliente">
 
     <!-- TODO: Update blank fragment layout -->
@@ -45,6 +49,7 @@
                 android:id="@+id/search_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="18dp"
                 android:hint="Nombres"/>
         </LinearLayout>
 
@@ -58,6 +63,7 @@
                 android:id="@+id/search_apellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="18dp"
                 android:hint="Apellidos"/>
         </LinearLayout>
 
@@ -71,6 +77,7 @@
                 android:id="@+id/search_direccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:hint="Dirección"/>
         </LinearLayout>
 

@@ -22,22 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistraClienteNuevo"
-            android:label="RegistraClienteNuevo"
-            android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity
-            android:name=".ConsultarCreditos"
-            android:label="@string/title_activity_consultar_creditos"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NuevoPrestamo"
-            android:label="@string/title_activity_nuevo_prestamo"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ConsultarClientesActivity"
-            android:label="@string/title_activity_consultar_clientes"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

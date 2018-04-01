@@ -9,10 +9,14 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String direccion;
+    private String telefono;
     private Integer id_estado;
     private Integer id_credito;
     private Integer id_tipousuario;
     private Integer id_tipotelefono;
+
+    public Usuario() {
+    }
 
    /* public Usuario() {
         this.id_cedula  = id_cedula;
@@ -52,4 +56,8 @@ public class Usuario {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public String getTelefono() { return telefono; }
+
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 }
