@@ -10,6 +10,7 @@ public class Usuario {
     private String apellido;
     private String direccion;
     private String telefono;
+    private String sexo;
     private Integer id_estado;
     private Integer id_credito;
     private Integer id_tipousuario;
@@ -60,4 +61,8 @@ public class Usuario {
     public String getTelefono() { return telefono; }
 
     public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public String getSexo() { return sexo; }
+
+    public void setSexo(String sexo) { this.sexo = sexo; }
 }

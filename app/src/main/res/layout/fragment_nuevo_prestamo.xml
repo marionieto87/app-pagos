@@ -51,6 +51,7 @@
                 android:inputType="textCapWords|textPersonName|number"
                 android:paddingTop="20dp"
                 android:textColorHighlight="@color/colorPrimaryDark"
+                android:hint="Nro Cedula"
                 android:textColorLink="@color/colorPrimaryDark" />
 
             <ImageView

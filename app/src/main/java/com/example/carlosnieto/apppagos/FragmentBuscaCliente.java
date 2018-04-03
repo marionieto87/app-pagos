@@ -48,7 +48,7 @@ public class FragmentBuscaCliente extends Fragment implements Response.Listener<
     private OnFragmentInteractionListener mListener;
 
     EditText campoDocumento;
-    TextView searchNombre,searchApellido,searchDireccion;
+    TextView searchNombre,searchApellido,searchDireccion, searchTelefono;
     Button btnBuscaCliente;
     ProgressDialog progreso;
 
@@ -97,6 +97,7 @@ public class FragmentBuscaCliente extends Fragment implements Response.Listener<
         searchNombre= (TextView) vista.findViewById(R.id.search_nombre);
         searchApellido=(TextView) vista.findViewById(R.id.search_apellido);
         searchDireccion= (TextView) vista.findViewById(R.id.search_direccion);
+        searchTelefono= (TextView) vista.findViewById(R.id.search_telefono);
         btnBuscaCliente= (Button) vista.findViewById(R.id.btn_BuscaCliente);
 
         request= Volley.newRequestQueue(getContext());
@@ -147,6 +148,7 @@ public class FragmentBuscaCliente extends Fragment implements Response.Listener<
             miUsuario.setNombre(jsonObject.optString("nombres"));
             miUsuario.setApellido(jsonObject.optString("apellidos"));
             miUsuario.setDireccion(jsonObject.optString("dir_cliente"));
+            miUsuario.setTelefono(jsonObject.optString("nro_telefono"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -154,6 +156,7 @@ public class FragmentBuscaCliente extends Fragment implements Response.Listener<
         searchNombre.setText("Nombre: "+miUsuario.getNombre());
         searchApellido.setText("Apellidos: "+miUsuario.getApellido());
         searchDireccion.setText("Direccion: "+miUsuario.getDireccion());
+        searchTelefono.setText("Telefono: "+miUsuario.getTelefono());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

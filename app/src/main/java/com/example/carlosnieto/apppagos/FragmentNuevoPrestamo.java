@@ -1,12 +1,26 @@
 package com.example.carlosnieto.apppagos;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 
 /**
@@ -28,6 +42,15 @@ public class FragmentNuevoPrestamo extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    EditText campoDocumento;
+    TextView searchNombre;
+
+    Button btnBuscaClientePrestamo;
+    ProgressDialog progreso;
+
+    RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
 
     public FragmentNuevoPrestamo() {
         // Required empty public constructor
@@ -64,8 +87,35 @@ public class FragmentNuevoPrestamo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nuevo_prestamo, container, false);
+        View vista=inflater.inflate(R.layout.fragment_busca_cliente, container, false);
+        campoDocumento= (EditText) vista.findViewById(R.id.search_cedula);
+        searchNombre= (TextView) vista.findViewById(R.id.search_nombre);
+        btnBuscaClientePrestamo= (Button) vista.findViewById(R.id.btn_BuscaCliente);
+
+        request= Volley.newRequestQueue(getContext());
+
+        btnBuscaClientePrestamo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cargaWebService();
+            }
+        });
+        return vista;
     }
+
+    private void cargaWebService() {
+        progreso=new ProgressDialog(getContext());
+        progreso.setMessage("Consultando...");
+        progreso.show();
+
+        String url="http://192.168.1.16/conexion-app-pagos/wsJSONConsultarUsuario.php?id_documento="
+                +campoDocumento.getText().toString();
+
+       // jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        request.add(jsonObjectRequest);
+    }
+    // aqui se esta haciendo la consulta para que traiga a cedula
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -163,21 +163,23 @@
                 android:orientation="horizontal">
 
                 <RadioGroup
+                    android:id="@+id/sexoSel"
                     android:layout_width="141dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/m"
+                        android:id="@+id/idRadioMasculino"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="Hombre"
                         android:textSize="12dp"
                         android:textColor="@color/colorAccent"
+                        android:checked="true"
                         android:textStyle="bold" />
 
                     <RadioButton
-                        android:id="@+id/f"
+                        android:id="@+id/idRadioFemenino"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="Mujer"

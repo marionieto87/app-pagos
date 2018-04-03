@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,6 +46,8 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
     private OnFragmentInteractionListener mListener;
 
     EditText campoCedula,campoNombre,campoApellido,campoDireccion, campoTelefono;
+    /*RadioButton sexoMasculino, sexoFemenino;
+    RadioGroup sexoSeleccionado;*/
     Button btn_GuardaCliente;
     ProgressDialog progreso;
 
@@ -101,7 +105,6 @@ public class FragmentRegistraClienteNuevo extends Fragment implements Response.L
                 cargarWebService();
             }
         });
-
 
         return vista;
     }
