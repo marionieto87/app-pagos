@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
  * Use the {@link FragmentNuevoPrestamo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentNuevoPrestamo extends Fragment {
+public class FragmentNuevoPrestamo extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,7 +44,7 @@ public class FragmentNuevoPrestamo extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    EditText campoDocumento;
+    EditText campoDocumento, campoNombre, campoMonto;
     TextView searchNombre;
 
     Button btnBuscaClientePrestamo;
@@ -86,35 +87,14 @@ public class FragmentNuevoPrestamo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View vista=inflater.inflate(R.layout.fragment_busca_cliente, container, false);
-        campoDocumento= (EditText) vista.findViewById(R.id.search_cedula);
-        searchNombre= (TextView) vista.findViewById(R.id.search_nombre);
-        btnBuscaClientePrestamo= (Button) vista.findViewById(R.id.btn_BuscaCliente);
 
-        request= Volley.newRequestQueue(getContext());
+        View vista=inflater.inflate(R.layout.fragment_nuevo_prestamo,container,false);
+        campoNombre= (EditText) vista.findViewById(R.id.etNombreCLiente);
 
-        btnBuscaClientePrestamo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cargaWebService();
-            }
-        });
+
+
         return vista;
     }
-
-    private void cargaWebService() {
-        progreso=new ProgressDialog(getContext());
-        progreso.setMessage("Consultando...");
-        progreso.show();
-
-        String url="http://192.168.1.16/conexion-app-pagos/wsJSONConsultarUsuario.php?id_documento="
-                +campoDocumento.getText().toString();
-
-       // jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        request.add(jsonObjectRequest);
-    }
-    // aqui se esta haciendo la consulta para que traiga a cedula
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -139,6 +119,16 @@ public class FragmentNuevoPrestamo extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
     }
 
     /**
