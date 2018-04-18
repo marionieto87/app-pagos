@@ -44,10 +44,10 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
 
     private OnFragmentInteractionListener mListener;
 
-    EditText campoDocumento, campoNombre, campoMonto;
+    EditText campoDocumento, campoNombre, campoMonto, campoFechaPrestamo, campoFechaRecoleccion;
     TextView searchNombre;
 
-    Button btnBuscaClientePrestamo;
+    Button btnBuscaClientePrestamo,btnFechaPrestamo, btnFechaRecoleccion, btnGuardaPrestamo;
     ProgressDialog progreso;
 
     RequestQueue request;
@@ -89,13 +89,55 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
                              Bundle savedInstanceState) {
 
         View vista=inflater.inflate(R.layout.fragment_nuevo_prestamo,container,false);
-        campoNombre= (EditText) vista.findViewById(R.id.etNombreCLiente);
+        campoDocumento = (EditText) vista.findViewById(R.id.et_cedula_cliente);
+        campoMonto  = (EditText) vista.findViewById(R.id.et_monto_prestamo);
+        campoFechaPrestamo    = (EditText) vista.findViewById(R.id.et_fecha_prestamo);
+        campoFechaRecoleccion = (EditText) vista.findViewById(R.id.et_fecha_recolectar);
+        btnGuardaPrestamo   = (Button) vista.findViewById(R.id.btn_guarda_prestamo);
 
+        request= Volley.newRequestQueue(getContext());
 
+        btnGuardaPrestamo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cargarWebService();
+            }
+        });
 
         return vista;
     }
 
+    private void cargarWebService() {
+        progreso=new ProgressDialog(getContext());
+        progreso.setMessage("Cargando...");
+        progreso.show();
+
+        String url="http://192.168.1.16/conexion-app-pagos/wsJSONGuardaPrestamo.php?id_documento="+campoDocumento.getText().toString()+
+                "&monto="+campoMonto.getText().toString()+
+                "&fecha_prestamo="+campoFechaPrestamo.getText().toString()+
+                "&fecha_recoleccion="+campoFechaRecoleccion.getText().toString();
+
+        url=url.replace(" ","%20");
+
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Toast.makeText(getContext(),"Se ha registrado exitosamente",Toast.LENGTH_SHORT).show();
+        progreso.hide();
+        campoDocumento.setText("");
+        campoFechaPrestamo.setText("");
+        campoFechaRecoleccion.setText("");
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        progreso.hide();
+        Toast.makeText(getContext(),"No se puede registrar"+error.toString(), Toast.LENGTH_SHORT).show();
+        Log.i("ERROR",error.toString());
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -119,16 +161,6 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
     }
 
     /**

@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Nombre: "
+                    android:text="Cedula: "
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -100,16 +100,16 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/et_monto_prestamo"
+                    android:id="@+id/et_cedula_cliente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number|phone"
+                    android:inputType="textCapCharacters"
                     android:textColorHighlight="@color/colorPrimaryDark"
                     android:textColorLink="@color/colorPrimaryDark" />
 
                 <EditText
-                    android:id="@+id/etNombreCLiente"
+                    android:id="@+id/et_monto_prestamo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -213,13 +213,13 @@
         android:paddingTop="8dp">
 
         <Button
-            android:id="@+id/bt_calcula_prestamo"
+            android:id="@+id/btn_calcula_prestamo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calcular"
-            android:onClick="calcularCuota"
             android:background="@color/colorPrimary"
-            android:textColor="@color/colorPrimaryApp"/>
+            android:onClick="calcularCuota"
+            android:text="Calcular"
+            android:textColor="@color/colorPrimaryApp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -238,17 +238,17 @@
 
     </LinearLayout>
 
-        <Button
-            android:id="@+id/bt_guarda_prestamo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:onClick="guardaPrestamo"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorPrimaryApp"/>
+    <Button
+        android:id="@+id/btn_guarda_prestamo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:onClick="guardaPrestamo"
+        android:text="Guardar"
+        android:textColor="@color/colorPrimaryApp" />
 
 
 </RelativeLayout>
