@@ -142,7 +142,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <Button
-                    android:id="@+id/btn_Fecha_Prestamo"
+                    android:id="@+id/btn_fecha_prestamo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/calendar"
@@ -184,7 +184,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btn_Fecha_recolectar"
+                    android:id="@+id/btn_fecha_recolectar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/calendar"

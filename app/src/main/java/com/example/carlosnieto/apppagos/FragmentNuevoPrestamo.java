@@ -1,5 +1,6 @@
 package com.example.carlosnieto.apppagos;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +36,7 @@ import org.json.JSONObject;
  * Use the {@link FragmentNuevoPrestamo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentNuevoPrestamo extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
+public class FragmentNuevoPrestamo extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,7 +50,7 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
 
     EditText campoDocumento, campoNombre, campoMonto, campoFechaPrestamo, campoFechaRecoleccion;
     TextView searchNombre;
-
+    private int  dia, mes, ano;
     Button btnBuscaClientePrestamo,btnFechaPrestamo, btnFechaRecoleccion, btnGuardaPrestamo;
     ProgressDialog progreso;
 
@@ -89,11 +93,13 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
                              Bundle savedInstanceState) {
 
         View vista=inflater.inflate(R.layout.fragment_nuevo_prestamo,container,false);
-        campoDocumento = (EditText) vista.findViewById(R.id.et_cedula_cliente);
-        campoMonto  = (EditText) vista.findViewById(R.id.et_monto_prestamo);
-        campoFechaPrestamo    = (EditText) vista.findViewById(R.id.et_fecha_prestamo);
+        campoDocumento      = (EditText) vista.findViewById(R.id.et_cedula_cliente);
+        campoMonto          = (EditText) vista.findViewById(R.id.et_monto_prestamo);
+        campoFechaPrestamo  = (EditText) vista.findViewById(R.id.et_fecha_prestamo);
         campoFechaRecoleccion = (EditText) vista.findViewById(R.id.et_fecha_recolectar);
         btnGuardaPrestamo   = (Button) vista.findViewById(R.id.btn_guarda_prestamo);
+        btnFechaPrestamo    = (Button) vista.findViewById(R.id.btn_fecha_prestamo);
+        btnFechaRecoleccion = (Button) vista.findViewById(R.id.btn_fecha_recolectar);
 
         request= Volley.newRequestQueue(getContext());
 
@@ -104,8 +110,51 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
             }
         });
 
+        btnFechaPrestamo.setOnClickListener(this);
+        btnFechaRecoleccion.setOnClickListener(this);
+
         return vista;
+
+
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v==btnFechaPrestamo){
+            final Calendar c= Calendar.getInstance();
+            dia  = c.get(Calendar.DAY_OF_MONTH);
+            mes  = c.get(Calendar.MONTH);
+            ano  = c.get(Calendar.YEAR);
+
+            DatePickerDialog date = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    campoFechaPrestamo.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                }
+            }
+                    ,ano,mes,dia);
+            date.show();
+
+        }
+        if(v==btnFechaRecoleccion){
+            final Calendar c= Calendar.getInstance();
+            dia  = c.get(Calendar.DAY_OF_MONTH);
+            mes  = c.get(Calendar.MONTH);
+            ano  = c.get(Calendar.YEAR);
+
+            DatePickerDialog date = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    campoFechaRecoleccion.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                }
+            }
+                    ,ano,mes,dia);
+            date.show();
+
+        }
+
+    }
+
 
     private void cargarWebService() {
         progreso=new ProgressDialog(getContext());
@@ -128,6 +177,7 @@ public class FragmentNuevoPrestamo extends Fragment implements Response.Listener
         Toast.makeText(getContext(),"Se ha registrado exitosamente",Toast.LENGTH_SHORT).show();
         progreso.hide();
         campoDocumento.setText("");
+        campoMonto.setText("");
         campoFechaPrestamo.setText("");
         campoFechaRecoleccion.setText("");
     }
